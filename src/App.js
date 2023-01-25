@@ -7,6 +7,7 @@ const App = () => {
 
   //Main State
   const [usernames, setUsernames] = useState([]);
+  const [filteredUsernames, setFilteredUsernames] = useState([]);
 
   //Temp State
   const [newUsername, setNewUsername] = useState('');
@@ -16,8 +17,20 @@ const App = () => {
   const addUsername = () => {
     if(newUsername){
       setUsernames([...usernames, newUsername]);
+      setFilteredUsernames([...usernames, newUsername]);
       setNewUsername('');
       setNewPassword('');
+    }
+  }
+
+  const searchTextHandler = e => {
+    const value = e.target.value;
+    if(value){
+      setFilteredUsernames(
+        usernames.filter(name => name.match(new RegExp(value, "i")))
+      )
+    }else{
+      setFilteredUsernames([...usernames]);
     }
   }
 
@@ -31,7 +44,7 @@ const App = () => {
         setNewPassword={setNewPassword}
       />
 
-      <LoginAttempts usernames={usernames}/>
+      <LoginAttempts filteredUsernames={filteredUsernames} searchTextHandler={searchTextHandler}/>
     </div>
   );
 };

@@ -12,7 +12,7 @@ const LoginForm = ({newUsername, setNewUsername, addUsername, newPassword, setNe
                 <div className="input-container">
                 <label>Password </label>
                 <input value={newPassword}
-                onChange={(e) => setNewPassword(e.target.value)} type="password" name="pass" required />
+                    onChange={(e) => setNewPassword(e.target.value)} type="password" name="pass" required />
                 </div>
                 <div className="button-container">
                 <button onClick={addUsername} className='btn btn-success'>Continue</button>
